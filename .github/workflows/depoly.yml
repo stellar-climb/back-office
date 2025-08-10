@@ -1,0 +1,53 @@
+# .github/workflows/deploy.yml
+
+name: Deploy Frontend to S3 and Invalidate CloudFront
+
+# main 브랜치에 push 이벤트가 발생했을 때 이 워크플로우를 실행합니다.
+on:
+  push:
+    branches:
+      - main
+
+# 워크플로우에서 실행될 작업들을 정의합니다.
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # 작업이 실행될 환경을 지정합니다.
+
+    # OIDC를 사용하기 위해 필요한 권한을 설정합니다.
+    permissions:
+      id-token: write # AWS에 인증하기 위한 OIDC 토큰을 가져올 권한
+      contents: read # 리포지토리 코드를 체크아웃할 권한
+
+    steps:
+      # 1. 리포지토리 코드 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. AWS 자격 증명 설정
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME_ARN }} # GitHub Secret에서 역할 ARN 가져오기
+          aws-region: ${{ secrets.AWS_REGION }} # GitHub Secret에서 리전 정보 가져오기
+
+      # 3. Node.js 환경 설정
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18" # 프로젝트에 맞는 Node.js 버전 지정
+
+      # 4. 의존성 설치 및 프론트엔드 빌드
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+
+      # 5. 빌드 결과물(dist 폴더)을 S3에 업로드
+      - name: Upload to S3
+        run: |
+          aws s3 sync ./dist s3://your-bucket-name --delete
+
+      # 6. CloudFront 캐시 무효화
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
