@@ -81,6 +81,7 @@ export function LoginScreen() {
 
           <Button
             onClick={handleSubmit(async ({ email, password }) => {
+              console.log(email, password);
               const res = await getUsers();
               console.log(res);
             })}
