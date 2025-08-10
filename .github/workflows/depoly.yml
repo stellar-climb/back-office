@@ -45,7 +45,7 @@ jobs:
       # 5. 빌드 결과물(dist 폴더)을 S3에 업로드
       - name: Upload to S3
         run: |
-          aws s3 sync ./dist s3://stellar-climb/back-office --delete
+          aws s3 sync ./dist s3://stellar-climb/back-office/dist --delete
 
       # 6. CloudFront 캐시 무효화
       - name: Invalidate CloudFront cache
