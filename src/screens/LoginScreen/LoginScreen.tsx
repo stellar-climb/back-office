@@ -11,6 +11,7 @@ import HttpsIcon from "@mui/icons-material/Https";
 import { useState } from "react";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { getUsers } from "../../libs/http-client";
 
 export function LoginScreen() {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,7 +46,7 @@ export function LoginScreen() {
             width: "80%",
             border: "1px solid #e0e0e0",
             padding: "48px",
-            borderRadius: "10px",
+            borderRadius: "16px",
           }}
         >
           <Typography css={{ textAlign: "center" }}>Back Office</Typography>
@@ -79,8 +80,9 @@ export function LoginScreen() {
           />
 
           <Button
-            onClick={handleSubmit(({ email, password }) => {
-              console.log({ email, password });
+            onClick={handleSubmit(async ({ email, password }) => {
+              const res = await getUsers();
+              console.log(res);
             })}
           >
             Login
