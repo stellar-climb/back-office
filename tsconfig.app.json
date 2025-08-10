@@ -27,7 +27,8 @@
     "baseUrl": "src",
     "paths": {
       "@screens": ["screens"],
-      "@routes": ["routes"]
+      "@routes": ["routes"],
+      "@libs": ["libs"]
     }
   },
   "include": ["src"]
