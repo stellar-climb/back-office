@@ -6,5 +6,5 @@ const apiClient = axios.create({
 });
 
 export const getUsers = () => {
-  return apiClient.get("/admins/health"); // 경로만 붙여서 호출
+  return apiClient.get("/health"); // 경로만 붙여서 호출
 };
