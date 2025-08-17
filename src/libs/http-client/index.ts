@@ -4,7 +4,7 @@ import axios from "axios";
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_CORE_API, // 또는 CloudFront 도메인
   headers: {
-    "x-stellar-climb": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    "x-stellar-climb": import.meta.env.VITE_X_STELLAR_HEADER,
   },
 });
 
