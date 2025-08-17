@@ -41,6 +41,9 @@ jobs:
         run: |
           npm ci
           npm run build
+        env:
+          VITE_CORE_API: ${{ secrets.VITE_CORE_API }}
+          VITE_X_STELLAR_HEADER: ${{ secrets.VITE_X_STELLAR_HEADER }}
 
       # 5. 빌드 결과물(dist 폴더)을 S3에 업로드
       - name: Upload to S3
