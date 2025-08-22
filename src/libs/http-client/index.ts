@@ -9,5 +9,8 @@ const apiClient = axios.create({
 });
 
 export const getUsers = () => {
-  return apiClient.get("/users"); // 경로만 붙여서 호출
+  return apiClient.post("/users/sign-up", {
+    email: "test@test.com",
+    password: "rlawjdgh159@",
+  }); // 경로만 붙여서 호출
 };
