@@ -1,27 +1,23 @@
+import { Stack, Typography } from "@mui/material";
 import {
-  Button,
-  IconButton,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useForm } from "react-hook-form";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import HttpsIcon from "@mui/icons-material/Https";
-import { useState } from "react";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { getUsers } from "../../libs/http-client";
+  GoogleLogin,
+  type GoogleCredentialResponse,
+} from "@react-oauth/google";
+import { googleLogin } from "../../libs/http-client";
 
 export function LoginScreen() {
-  const [isVisible, setIsVisible] = useState(false);
+  const handleLoginSuccess = async (
+    credentialResponse: GoogleCredentialResponse
+  ) => {
+    if (credentialResponse.credential) {
+      const res = await googleLogin({ token: credentialResponse.credential });
+      console.log(res);
+    }
+  };
 
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+  const handleLoginError = () => {
+    console.log("구글 로그인에 실패했습니다.");
+  };
 
   return (
     <Stack
@@ -50,44 +46,11 @@ export function LoginScreen() {
           }}
         >
           <Typography css={{ textAlign: "center" }}>Back Office</Typography>
-          <TextField
-            {...register("email")}
-            placeholder="email"
-            slotProps={{
-              input: {
-                startAdornment: <AccountCircleIcon />,
-              },
-            }}
-          />
-          <TextField
-            {...register("password")}
-            placeholder="password"
-            type={isVisible ? "text" : "password"}
-            slotProps={{
-              input: {
-                startAdornment: <HttpsIcon />,
-                endAdornment: isVisible ? (
-                  <IconButton onClick={() => setIsVisible(false)}>
-                    <VisibilityOffIcon />
-                  </IconButton>
-                ) : (
-                  <IconButton>
-                    <VisibilityIcon onClick={() => setIsVisible(true)} />
-                  </IconButton>
-                ),
-              },
-            }}
-          />
 
-          <Button
-            onClick={handleSubmit(async ({ email, password }) => {
-              console.log(email, password);
-              const res = await getUsers();
-              console.log(res);
-            })}
-          >
-            Login
-          </Button>
+          <GoogleLogin
+            onSuccess={handleLoginSuccess}
+            onError={handleLoginError}
+          />
         </Stack>
       </Stack>
     </Stack>

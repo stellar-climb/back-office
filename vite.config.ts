@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [react({ jsxImportSource: "@emotion/react" }), tsconfigPaths()],
   server: {
     port: 8000,
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
+    },
   },
 });
