@@ -3,15 +3,16 @@ import {
   GoogleLogin,
   type GoogleCredentialResponse,
 } from "@react-oauth/google";
-import { googleLogin } from "../../libs/http-client";
+import { useSignInGoogle } from "@libs";
 
 export function LoginScreen() {
+  const [signInGoogle] = useSignInGoogle();
+
   const handleLoginSuccess = async (
     credentialResponse: GoogleCredentialResponse
   ) => {
     if (credentialResponse.credential) {
-      const res = await googleLogin({ token: credentialResponse.credential });
-      console.log(res);
+      signInGoogle(credentialResponse.credential);
     }
   };
 

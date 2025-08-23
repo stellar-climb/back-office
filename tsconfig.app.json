@@ -28,7 +28,8 @@
     "paths": {
       "@screens": ["screens"],
       "@routes": ["routes"],
-      "@libs": ["libs"]
+      "@libs": ["libs"],
+      "@models": ["model"]
     }
   },
   "include": ["src"]
