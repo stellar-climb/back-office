@@ -1,5 +1,6 @@
 import { AppBar, Avatar, Box, Stack, Toolbar, Tooltip, Typography } from '@mui/material';
 import { useUser } from '@libs';
+import { Navigation } from '../Navigation';
 
 export function Header() {
   // 1. destructure props
@@ -20,10 +21,11 @@ export function Header() {
       >
         <Toolbar>
           <Stack direction="row" css={{ justifyContent: 'space-between', width: '100%' }}>
-            <Stack direction="row" css={{ alignItems: 'center' }}>
+            <Stack spacing={4} direction="row" css={{ alignItems: 'center' }}>
               <Typography variant="h6" css={{ color: '#000000' }}>
                 Stellar Climb
               </Typography>
+              <Navigation />
             </Stack>
 
             <Stack spacing={2} direction="row" css={{ alignItems: 'center' }}>

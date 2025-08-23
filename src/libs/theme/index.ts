@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   components: {
@@ -10,13 +10,19 @@ export const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         input: {
-          padding: "8px 16px",
+          padding: '8px 16px',
         },
       },
     },
     MuiButton: {
       defaultProps: {
-        variant: "contained",
+        variant: 'contained',
+        disableElevation: true,
+      },
+      styleOverrides: {
+        root: {
+          color: '#000000',
+        },
       },
     },
     MuiIconButton: {
@@ -25,8 +31,8 @@ export const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          color: "#000000",
-          padding: "4px",
+          color: '#000000',
+          padding: '4px',
         },
       },
     },

@@ -47,7 +47,12 @@ function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route element={<AuthorizedRoute />}>
-          <Route path="/" element={<div>Dashboard</div>} />
+          <Route path="/" element={<Navigate to="/users" />} />
+          <Route path="/users" element={<div>Users</div>} />
+          <Route path="/gyms">
+            <Route index element={<div>Gyms</div>} />
+            <Route path=":add" element={<div>Gyms Add</div>} />
+          </Route>
         </Route>
 
         <Route element={<UnAuthorizedRoute />}>
