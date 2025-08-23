@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import { GoogleLogin, googleLogout, type GoogleCredentialResponse } from '@react-oauth/google';
+import { GoogleLogin, type GoogleCredentialResponse } from '@react-oauth/google';
 import { useSignInGoogle } from '@libs';
 
 export function LoginScreen() {
@@ -8,8 +8,6 @@ export function LoginScreen() {
   const handleLoginSuccess = async (credentialResponse: GoogleCredentialResponse) => {
     if (credentialResponse.credential) {
       signInGoogle(credentialResponse.credential);
-
-      googleLogout();
     }
   };
 

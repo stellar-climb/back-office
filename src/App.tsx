@@ -5,13 +5,13 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
           <AppRouter />
-        </GoogleOAuthProvider>
-      </AuthProvider>
-    </ThemeProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </GoogleOAuthProvider>
   );
 }
 
