@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { LoginScreen } from '@screens';
 import { useUser } from '@libs';
-import { Stack } from '@mui/material';
+import { Stack, Toolbar } from '@mui/material';
+import { Header } from '../components';
 
 function AuthorizedRoute() {
   // 1. destructure props
@@ -16,8 +17,11 @@ function AuthorizedRoute() {
   // 8. handlers
   return user ? (
     <Stack css={{ width: '100%' }}>
-      <div>hi</div>
-      <Outlet />
+      <Header />
+      <Stack css={{ flexGrow: 1 }}>
+        <Toolbar />
+        <Outlet />
+      </Stack>
     </Stack>
   ) : (
     <Navigate to="/sign-in" />

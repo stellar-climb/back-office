@@ -29,7 +29,8 @@
       "@screens": ["screens"],
       "@routes": ["routes"],
       "@libs": ["libs"],
-      "@models": ["model"]
+      "@models": ["model"],
+      "@components": ["components"]
     }
   },
   "include": ["src"]
