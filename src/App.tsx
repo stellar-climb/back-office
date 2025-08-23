@@ -1,7 +1,7 @@
-import { ThemeProvider } from "@mui/material";
-import { AppRouter } from "@routes";
-import { AuthProvider, theme } from "@libs";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import { ThemeProvider } from '@mui/material';
+import { AppRouter } from '@routes';
+import { AuthProvider, theme } from '@libs';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
   return (
