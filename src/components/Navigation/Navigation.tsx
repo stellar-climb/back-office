@@ -13,13 +13,7 @@ export function Navigation() {
   return (
     <Stack direction="row" spacing={3}>
       <SingleMenu name="사용자" path="/users" />
-      <MultiMenu
-        name="암장"
-        items={[
-          { name: 'list', path: '/gyms' },
-          { name: 'add', path: '/gyms/add' },
-        ]}
-      />
+      <MultiMenu name="암장" items={[{ name: '목록', path: '/gyms' }]} />
     </Stack>
   );
 }

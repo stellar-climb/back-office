@@ -21,7 +21,7 @@ export function Header() {
       >
         <Toolbar>
           <Stack direction="row" css={{ justifyContent: 'space-between', width: '100%' }}>
-            <Stack spacing={4} direction="row" css={{ alignItems: 'center' }}>
+            <Stack spacing={16} direction="row" css={{ alignItems: 'center' }}>
               <Typography variant="h6" css={{ color: '#000000' }}>
                 Stellar Climb
               </Typography>
