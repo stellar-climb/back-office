@@ -8,4 +8,6 @@ export class UserModel {
   name!: string;
 
   status!: UserStatus;
+
+  profileImageUrl!: string | null;
 }

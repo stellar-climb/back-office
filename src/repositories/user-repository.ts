@@ -4,8 +4,8 @@ import { queryKeyMap } from '@libs';
 
 export const userRepository = {
   async list() {
-    return httpClient.get<UserModel[]>('/users');
+    return httpClient.get<{ items: UserModel[]; total: number }>('/users');
   },
 };
 
-queryKeyMap.set(userRepository.list, ['users']);
+queryKeyMap.set(userRepository.list, ['User']);

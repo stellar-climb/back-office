@@ -21,10 +21,13 @@ export function UserScreen() {
   // 2. lib hooks
   // 3. state hooks
   // 4. query hooks
-  const { data: users, loading } = useQuery(userRepository.list);
+  const { data, loading } = useQuery(userRepository.list);
 
   // 5. form hooks
   // 6. calculate values
+  const users = data?.items || [];
+  const total = data?.total || 0;
+
   // 7. effect hooks
   // 8. handlers
   return (
