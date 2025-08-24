@@ -1,6 +1,7 @@
 import { Box, Stack, Typography, List, Chip, CircularProgress, Divider } from '@mui/material';
 import { userRepository } from '@repositories';
 import { useQuery } from '@libs';
+import { useState } from 'react';
 
 function RoleChip(props: { status: string }) {
   const { status } = props;
@@ -20,6 +21,7 @@ export function UserScreen() {
   // 1. destructure props
   // 2. lib hooks
   // 3. state hooks
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   // 4. query hooks
   const { data, loading } = useQuery(userRepository.list);
 
@@ -41,13 +43,23 @@ export function UserScreen() {
               </Stack>
             ) : (
               users &&
-              users.map((item) => (
-                <Stack key={item.id} css={{ border: '1px solid #000', borderRadius: '8px', padding: '16px' }}>
+              users.map((user) => (
+                <Stack
+                  key={user.id}
+                  onClick={() => setSelectedUserId(user.id)}
+                  css={{
+                    border: selectedUserId === user.id ? '2px solid #015dee' : '1px solid #000',
+                    borderRadius: '8px',
+                    padding: '16px',
+                    cursor: 'pointer',
+                    backgroundColor: '#fff',
+                  }}
+                >
                   <Stack direction="row" css={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography css={{ fontSize: '20px' }}>{item.name}</Typography>
-                    <RoleChip status={item.status} />
+                    <Typography css={{ fontSize: '20px' }}>{user.name}</Typography>
+                    <RoleChip status={user.status} />
                   </Stack>
-                  <Typography css={{ fontSize: '12px' }}>{item.email}</Typography>
+                  <Typography css={{ fontSize: '12px' }}>{user.email}</Typography>
                 </Stack>
               ))
             )}
