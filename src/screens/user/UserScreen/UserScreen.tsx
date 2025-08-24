@@ -2,6 +2,7 @@ import { Box, Stack, Typography, List, Chip, CircularProgress, Divider } from '@
 import { userRepository } from '@repositories';
 import { useQuery } from '@libs';
 import { useState } from 'react';
+import { UserDetailSection } from '@components';
 
 function RoleChip(props: { status: string }) {
   const { status } = props;
@@ -67,7 +68,15 @@ export function UserScreen() {
         </List>
       </Box>
       <Divider orientation="vertical" css={{ margin: '0 8px' }} />
-      <Box css={{ flex: 1 }}>fdas</Box>
+      <Box css={{ flex: 1 }}>
+        {selectedUserId ? (
+          <UserDetailSection userId={selectedUserId} />
+        ) : (
+          <Stack css={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <Typography css={{ fontSize: '20px' }}>선택된 사용자가 없습니다.</Typography>
+          </Stack>
+        )}
+      </Box>
     </Stack>
   );
 }

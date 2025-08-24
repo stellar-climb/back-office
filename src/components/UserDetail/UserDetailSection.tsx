@@ -1,5 +1,6 @@
 import { userRepository } from '@repositories';
 import { useQuery } from '@libs';
+import { CircularProgress } from '@mui/material';
 
 export function UserDetailSection(props: { userId: string }) {
   // 1. destructure props
@@ -16,5 +17,5 @@ export function UserDetailSection(props: { userId: string }) {
   // 6. calculate values
   // 7. effect hooks
   // 8. handlers
-  return <div>UserDetailSection</div>;
+  return <div>{loading ? <CircularProgress /> : <div>{user?.name}</div>}</div>;
 }
