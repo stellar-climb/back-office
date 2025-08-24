@@ -47,7 +47,7 @@ function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route element={<AuthorizedRoute />}>
-          <Route path="/" element={<div>Dashboard</div>} />
+          <Route index element={<Navigate to="/users" replace />} />
           <Route path="/users" element={<UserScreen />} />
           <Route path="/gyms">
             <Route index element={<div>Gyms</div>} />
