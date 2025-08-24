@@ -30,7 +30,8 @@
       "@routes": ["routes"],
       "@libs": ["libs"],
       "@models": ["model"],
-      "@components": ["components"]
+      "@components": ["components"],
+      "@repositories": ["repositories"]
     }
   },
   "include": ["src"]

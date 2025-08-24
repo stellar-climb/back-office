@@ -44,7 +44,7 @@ function MultiMenu(props: { name: string; items: { name: string; path: string }[
       >
         {items.map(({ name, path }, index) => {
           return (
-            <React.Fragment key={path}>
+            <div key={path} css={{ width: '100%' }}>
               {index !== 0 && <Divider />}
               <MenuItem
                 disableGutters
@@ -56,7 +56,7 @@ function MultiMenu(props: { name: string; items: { name: string; path: string }[
               >
                 {name}
               </MenuItem>
-            </React.Fragment>
+            </div>
           );
         })}
       </Menu>

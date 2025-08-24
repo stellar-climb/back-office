@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { LoginScreen } from '@screens';
+import { LoginScreen, UserScreen } from '@screens';
 import { useUser } from '@libs';
 import { Stack, Toolbar } from '@mui/material';
 import { Header } from '../components';
@@ -16,9 +16,9 @@ function AuthorizedRoute() {
   // 7. effect hooks
   // 8. handlers
   return user ? (
-    <Stack css={{ width: '100%', padding: '0 16px' }}>
+    <Stack css={{ width: '100%', height: '100vh', overflow: 'hidden' }}>
       <Header />
-      <Stack css={{ flexGrow: 1, marginTop: '16px' }}>
+      <Stack css={{ flexGrow: 1, margin: '8px 0' }}>
         <Toolbar />
         <Outlet />
       </Stack>
@@ -47,8 +47,8 @@ function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route element={<AuthorizedRoute />}>
-          <Route path="/" element={<Navigate to="/users" />} />
-          <Route path="/users" element={<div>Users</div>} />
+          <Route path="/" element={<div>Dashboard</div>} />
+          <Route path="/users" element={<UserScreen />} />
           <Route path="/gyms">
             <Route index element={<div>Gyms</div>} />
             <Route path=":add" element={<div>Gyms Add</div>} />
