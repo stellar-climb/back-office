@@ -35,7 +35,7 @@ export function UserScreen() {
   // 8. handlers
   return (
     <Stack direction="row">
-      <Box css={{ width: '360px', height: '100vh', overflow: 'auto' }}>
+      <Box css={{ width: '420px', height: '100vh', overflow: 'auto' }}>
         <List css={{ paddingRight: '8px' }}>
           <Stack spacing={2}>
             {loading ? (
