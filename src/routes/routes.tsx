@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { LoginScreen, UserScreen } from '@screens';
+import { GymScreen, LoginScreen, UserScreen } from '@screens';
 import { useUser } from '@libs';
 import { Stack, Toolbar } from '@mui/material';
 import { Header } from '../components';
@@ -50,7 +50,7 @@ function AppRouter() {
           <Route index element={<Navigate to="/users" replace />} />
           <Route path="/users" element={<UserScreen />} />
           <Route path="/gyms">
-            <Route index element={<div>Gyms</div>} />
+            <Route index element={<GymScreen />} />
             <Route path=":add" element={<div>Gyms Add</div>} />
           </Route>
         </Route>

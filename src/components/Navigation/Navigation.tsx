@@ -14,6 +14,7 @@ export function Navigation() {
     <Stack direction="row" spacing={3}>
       <SingleMenu name="사용자" path="/users" />
       <MultiMenu name="암장" items={[{ name: '목록', path: '/gyms' }]} />
+      <MultiMenu name="커뮤니티" items={[{ name: '목록', path: '/community' }]} />
     </Stack>
   );
 }
