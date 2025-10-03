@@ -6,7 +6,7 @@ import {
   MenuItem,
   type SelectChangeEvent,
 } from '@mui/material';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 export function Pagination(props: {
   page: number;
@@ -32,6 +32,10 @@ export function Pagination(props: {
   }, [totalCount, limit]);
 
   // 7. effect hooks
+  useEffect(() => {
+    onChange(1);
+  }, [limit, onChange]);
+
   // 8. handlers
   const handleLimitChange = (event: SelectChangeEvent<number>) => {
     onLimitChange(Number(event.target.value));

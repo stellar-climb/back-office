@@ -1,7 +1,7 @@
 import { Button, Stack, Typography } from '@mui/material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { AddGymDialog, DialogButton, Pagination } from '@components';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { gymRepository } from '@repositories';
 import { useQuery } from '@libs';
 import { GymModel } from '@models';
