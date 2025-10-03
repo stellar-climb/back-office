@@ -1,9 +1,10 @@
 import { Button, Stack, Typography } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { AddGymDialog, DialogButton, Pagination } from '@components';
 import { useMemo, useState } from 'react';
 import { gymRepository } from '@repositories';
 import { useQuery } from '@libs';
+import { GymModel } from '@models';
 
 export function GymScreen() {
   // 1. destructure props
@@ -20,11 +21,11 @@ export function GymScreen() {
   const gymItems = gyms?.items || [];
   const totalCount = gyms?.total || 0;
 
-  const columns = useMemo(() => {
+  const columns = useMemo<GridColDef<GymModel>[]>(() => {
     return [
-      { field: 'id', headerName: 'ID', width: 100 },
-      { field: 'name', headerName: 'Name', width: 100 },
-      { field: 'address', headerName: 'Address', width: 100 },
+      { field: 'id', headerName: 'ID', width: 100, maxWidth: 100 },
+      { field: 'name', headerName: 'Name', width: 100, flex: 1 },
+      { field: 'address', headerName: 'Address', width: 100, flex: 1 },
     ];
   }, []);
 
@@ -46,7 +47,7 @@ export function GymScreen() {
       </DialogButton>
 
       <Stack css={{ padding: '24px', width: '100%', height: '920px' }}>
-        <DataGrid rows={gymItems} columns={columns} hideFooter loading={loading} />
+        <DataGrid rows={gymItems} columns={columns} hideFooter loading={loading} checkboxSelection />
       </Stack>
       <Pagination page={page} limit={limit} totalCount={totalCount} onChange={setPage} onLimitChange={setLimit} />
     </Stack>
