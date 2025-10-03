@@ -18,7 +18,7 @@ export function DialogTitleGroup(props: { onClose: () => void; title: string }) 
       <Stack direction="row" css={{ justifyContent: 'space-between', alignItems: 'center' }}>
         <Stack spacing={3} direction="row" css={{ alignItems: 'center' }}>
           <FitnessCenterIcon />
-          <Typography variant="h6">{title}</Typography>
+          <Typography variant="h5">{title}</Typography>
         </Stack>
         <IconButton onClick={onClose}>
           <CloseIcon />

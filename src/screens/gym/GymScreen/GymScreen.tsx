@@ -1,4 +1,4 @@
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { AddGymDialog, DialogButton, Pagination } from '@components';
 import { useState } from 'react';
@@ -18,12 +18,17 @@ export function GymScreen() {
     <Stack css={{ width: '100%', height: '100%', alignItems: 'center' }}>
       <DialogButton
         render={({ onOpen }) => {
-          return <Button onClick={onOpen}>추가</Button>;
+          return (
+            <Button onClick={onOpen}>
+              <Typography>+ ADD</Typography>
+            </Button>
+          );
         }}
         css={{ marginLeft: 'auto' }}
       >
         {({ onClose, onKeyDown }) => <AddGymDialog onClose={onClose} onKeyDown={onKeyDown} />}
       </DialogButton>
+
       <Stack css={{ padding: '24px', width: '100%', height: 'calc(100% - 360px)' }}>
         <DataGrid rows={[]} columns={[]} hideFooter />
       </Stack>
