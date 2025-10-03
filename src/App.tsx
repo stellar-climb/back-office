@@ -2,10 +2,9 @@ import { ThemeProvider } from '@mui/material';
 import { AppRouter } from '@routes';
 import { AuthProvider, theme } from '@libs';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { SnackbarProvider } from 'notistack';
-
-const queryClient = new QueryClient();
+import { queryClient } from '@libs';
 
 function App() {
   return (

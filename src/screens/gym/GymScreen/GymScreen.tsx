@@ -15,7 +15,6 @@ export function GymScreen() {
   // 4. query hooks
   const { data: gyms, loading } = useQuery(gymRepository.list);
 
-  console.log(limit);
   // 5. form hooks
   // 6. calculate values
   const gymItems = gyms?.items || [];
