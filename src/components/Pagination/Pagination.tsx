@@ -36,6 +36,10 @@ export function Pagination(props: {
     onChange(1);
   }, [limit, onChange]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [page]);
+
   // 8. handlers
   const handleLimitChange = (event: SelectChangeEvent<number>) => {
     onLimitChange(Number(event.target.value));
