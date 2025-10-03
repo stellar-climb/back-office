@@ -17,7 +17,7 @@ export function Pagination(props: {
   limitOptions?: number[];
 }) {
   // 1. destructure props
-  const { page = 1, limit, totalCount, onChange, onLimitChange, limitOptions = [25, 50, 100] } = props;
+  const { page = 1, limit, totalCount, onChange, onLimitChange, limitOptions = [10, 25, 50, 100] } = props;
 
   // 2. lib hooks
   // 3. state hooks

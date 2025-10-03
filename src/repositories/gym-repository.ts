@@ -7,8 +7,13 @@ export const gymRepository = {
     return httpClient.post<void>('/gyms', { name, address });
   },
 
-  async list() {
-    return httpClient.get<{ items: GymModel[]; total: number }>('/gyms');
+  async list({ page, limit }: { page: number; limit: number }) {
+    return httpClient.get<{ items: GymModel[]; total: number }>('/gyms', {
+      params: {
+        page,
+        limit,
+      },
+    });
   },
 
   async retrieve({ id }: { id: string }) {

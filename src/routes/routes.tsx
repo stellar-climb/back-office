@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { GymScreen, LoginScreen, UserScreen, BullScreen } from '@screens';
+import { GymScreen, LoginScreen, UserScreen } from '@screens';
 import { useUser } from '@libs';
 import { Stack, Toolbar } from '@mui/material';
 import { Header } from '../components';

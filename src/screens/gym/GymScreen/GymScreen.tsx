@@ -10,10 +10,10 @@ export function GymScreen() {
   // 2. lib hooks
   // 3. state hooks
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(25);
+  const [limit, setLimit] = useState(10);
 
   // 4. query hooks
-  const { data: gyms, loading } = useQuery(gymRepository.list);
+  const { data: gyms, loading } = useQuery(gymRepository.list, { variables: { page, limit } });
 
   // 5. form hooks
   // 6. calculate values
@@ -45,7 +45,7 @@ export function GymScreen() {
         {({ onClose, onKeyDown }) => <AddGymDialog onClose={onClose} onKeyDown={onKeyDown} />}
       </DialogButton>
 
-      <Stack css={{ padding: '24px', width: '100%', height: 'calc(100% - 360px)' }}>
+      <Stack css={{ padding: '24px', width: '100%', height: '920px' }}>
         <DataGrid rows={gymItems} columns={columns} hideFooter loading={loading} />
       </Stack>
       <Pagination page={page} limit={limit} totalCount={totalCount} onChange={setPage} onLimitChange={setLimit} />
