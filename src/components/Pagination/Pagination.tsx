@@ -1,14 +1,23 @@
-import { Stack, Pagination as MuiPagination } from '@mui/material';
+import {
+  Stack,
+  Pagination as MuiPagination,
+  Typography,
+  Select,
+  MenuItem,
+  type SelectChangeEvent,
+} from '@mui/material';
 import { useMemo } from 'react';
 
 export function Pagination(props: {
   page: number;
   limit: number;
   totalCount?: number;
+  onLimitChange: (limit: number) => void;
   onChange: (page: number) => void;
+  limitOptions?: number[];
 }) {
   // 1. destructure props
-  const { page = 1, limit, totalCount, onChange } = props;
+  const { page = 1, limit, totalCount, onChange, onLimitChange, limitOptions = [25, 50, 100] } = props;
 
   // 2. lib hooks
   // 3. state hooks
@@ -24,9 +33,22 @@ export function Pagination(props: {
 
   // 7. effect hooks
   // 8. handlers
+  const handleLimitChange = (event: SelectChangeEvent<number>) => {
+    onLimitChange(Number(event.target.value));
+  };
   return (
-    <Stack>
+    <Stack spacing={4} css={{ width: '100%', alignItems: 'center' }}>
       <MuiPagination size="large" page={page} count={count} onChange={(_, page) => onChange(page)} />
+      <Stack direction="row" alignItems="center" spacing={1}>
+        <Typography sx={{ color: 'text.secondary', fontSize: '14px' }}>Rows per page:</Typography>
+        <Select value={limit} onChange={handleLimitChange} size="small">
+          {limitOptions.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </Select>
+      </Stack>
     </Stack>
   );
 }
