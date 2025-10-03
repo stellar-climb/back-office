@@ -29,9 +29,9 @@ export function Header() {
               <Navigation />
             </Stack>
 
-            <Stack spacing={2} direction="row" css={{ alignItems: 'center' }}>
+            {/* <Stack spacing={2} direction="row" css={{ alignItems: 'center' }}>
               <BullDashboardButton />
-            </Stack>
+            </Stack> */}
 
             <Stack spacing={2} direction="row" css={{ alignItems: 'center' }}>
               <Avatar

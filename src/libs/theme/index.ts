@@ -26,9 +26,6 @@ export const theme = createTheme({
       },
     },
     MuiIconButton: {
-      defaultProps: {
-        disableRipple: true,
-      },
       styleOverrides: {
         root: {
           color: '#000000',
@@ -37,4 +34,5 @@ export const theme = createTheme({
       },
     },
   },
+  spacing: 4,
 });

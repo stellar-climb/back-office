@@ -1,10 +1,11 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import { Stack, Typography, IconButton, Button } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Dialog, DialogActions, DialogContent, Stack } from '@mui/material';
+import { Button } from '@mui/material';
+import { DialogTitleGroup } from '@components';
 
 export function AddGymDialog(props: { onClose: () => void; onKeyDown: React.KeyboardEventHandler }) {
   // 1. destructure props
   const { onClose, onKeyDown } = props;
+
   // 2. lib hooks
   // 3. state hooks
   // 4. query hooks
@@ -15,15 +16,10 @@ export function AddGymDialog(props: { onClose: () => void; onKeyDown: React.Keyb
 
   return (
     <Dialog open onKeyDown={onKeyDown}>
-      <DialogTitle>
-        <Stack direction="row" css={{ justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography css={{ fontSize: '20px', fontWeight: 500 }}>Gym 추가</Typography>
-          <IconButton onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
-        </Stack>
-      </DialogTitle>
-      <DialogContent>hi</DialogContent>
+      <DialogTitleGroup onClose={onClose} title="Gym 추가" />
+      <DialogContent>
+        <Stack>폼이 추가 될 예정</Stack>
+      </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>취소</Button>
         <Button onClick={onClose}>추가</Button>

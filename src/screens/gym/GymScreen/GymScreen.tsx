@@ -20,6 +20,7 @@ export function GymScreen() {
         render={({ onOpen }) => {
           return <Button onClick={onOpen}>추가</Button>;
         }}
+        css={{ marginLeft: 'auto' }}
       >
         {({ onClose, onKeyDown }) => <AddGymDialog onClose={onClose} onKeyDown={onKeyDown} />}
       </DialogButton>
