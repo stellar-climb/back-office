@@ -1,9 +1,12 @@
-import { Dialog, DialogActions, DialogContent, FormHelperText, Stack, TextField, Typography } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, Stack, TextField, Typography } from '@mui/material';
 import { Button } from '@mui/material';
 import { DialogTitleGroup } from '@components';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useMutation } from '@libs';
+import { gymRepository } from '@repositories';
+import { useSnackbar } from 'notistack';
 
 const yupSchema = yup
   .object({
@@ -17,8 +20,19 @@ export function AddGymDialog(props: { onClose: () => void; onKeyDown: React.Keyb
   const { onClose, onKeyDown } = props;
 
   // 2. lib hooks
+  const { enqueueSnackbar } = useSnackbar();
   // 3. state hooks
   // 4. query hooks
+  const [registerGym, { loading }] = useMutation(gymRepository.register, {
+    onSuccess: () => {
+      enqueueSnackbar('Success! 🚀', { variant: 'success' });
+      onClose();
+    },
+    onError: (error) => {
+      console.log(error);
+      enqueueSnackbar(error.message, { variant: 'error' });
+    },
+  });
   // 5. form hooks
   const {
     register,
@@ -48,9 +62,10 @@ export function AddGymDialog(props: { onClose: () => void; onKeyDown: React.Keyb
       </DialogContent>
       <DialogActions>
         <Button
+          loading={loading}
           disabled={!isValid || !isDirty}
-          onClick={handleSubmit(async ({ name }) => {
-            console.log(name);
+          onClick={handleSubmit(async ({ name, address }) => {
+            await registerGym({ variables: { name, address } });
           })}
         >
           <Typography>등록</Typography>

@@ -1,1 +1,2 @@
-export * from "./user-model";
+export * from './gym-model';
+export * from './user-model';
