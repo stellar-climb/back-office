@@ -24,8 +24,8 @@ export function GymScreen() {
   const columns = useMemo<GridColDef<GymModel>[]>(() => {
     return [
       { field: 'id', headerName: 'ID', width: 100, maxWidth: 100 },
-      { field: 'name', headerName: 'Name', width: 100, flex: 1 },
-      { field: 'address', headerName: 'Address', width: 100, flex: 1 },
+      { field: 'name', headerName: '이름', width: 100, flex: 1 },
+      { field: 'address', headerName: '주소', width: 100, flex: 1 },
     ];
   }, []);
 
