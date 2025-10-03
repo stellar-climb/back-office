@@ -1,7 +1,7 @@
 import { Button, Stack, Typography } from '@mui/material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { AddGymDialog, DialogButton, Pagination } from '@components';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { gymRepository } from '@repositories';
 import { useQuery } from '@libs';
 import { GymModel } from '@models';
@@ -11,7 +11,7 @@ export function GymScreen() {
   // 2. lib hooks
   // 3. state hooks
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(25);
 
   // 4. query hooks
   const { data: gyms, loading } = useQuery(gymRepository.list, { variables: { page, limit } });
