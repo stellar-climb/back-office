@@ -16,7 +16,7 @@ function AuthorizedRoute() {
   // 7. effect hooks
   // 8. handlers
   return user ? (
-    <Stack css={{ width: '100%', height: '100vh', overflow: 'hidden' }}>
+    <Stack css={{ width: '100%', height: '100vh' }}>
       <Header />
       <Stack css={{ flexGrow: 1, margin: '8px 0' }}>
         <Toolbar />
