@@ -1,10 +1,11 @@
-import { Button, Stack, Typography } from '@mui/material';
+import { Button, IconButton, Stack, TextField, Typography } from '@mui/material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { AddGymDialog, DialogButton, Pagination } from '@components';
 import { useMemo, useState } from 'react';
 import { gymRepository } from '@repositories';
 import { useQuery } from '@libs';
 import { GymModel } from '@models';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 export function GymScreen() {
   // 1. destructure props
@@ -33,18 +34,26 @@ export function GymScreen() {
   // 8. handlers
   return (
     <Stack css={{ width: '100%', height: '100%', alignItems: 'center' }}>
-      <DialogButton
-        render={({ onOpen }) => {
-          return (
-            <Button onClick={onOpen}>
-              <Typography>+ ADD</Typography>
-            </Button>
-          );
-        }}
-        css={{ marginLeft: 'auto' }}
-      >
-        {({ onClose, onKeyDown }) => <AddGymDialog onClose={onClose} onKeyDown={onKeyDown} />}
-      </DialogButton>
+      <Stack css={{ width: '100%', justifyContent: 'flex-start' }}>
+        <Typography css={{ fontSize: '32px', fontWeight: 'bold' }}>암장 목록</Typography>
+      </Stack>
+      <Stack spacing={2} direction="row" css={{ alignItems: 'center' }}>
+        <IconButton css={{ borderRadius: '4px', backgroundColor: '#f1f3f5', border: '1px solid #e9ecef' }}>
+          <FilterListIcon />
+        </IconButton>
+        <TextField label="검색" />
+        <DialogButton
+          render={({ onOpen }) => {
+            return (
+              <Button onClick={onOpen} css={{ width: '80px' }}>
+                <Typography>+ ADD</Typography>
+              </Button>
+            );
+          }}
+        >
+          {({ onClose, onKeyDown }) => <AddGymDialog onClose={onClose} onKeyDown={onKeyDown} />}
+        </DialogButton>
+      </Stack>
 
       <Stack css={{ padding: '24px', width: '100%', height: '920px' }}>
         <DataGrid rows={gymItems} columns={columns} hideFooter loading={loading} checkboxSelection />

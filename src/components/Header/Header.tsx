@@ -1,7 +1,6 @@
 import { AppBar, Avatar, Box, Stack, Toolbar, Tooltip, Typography } from '@mui/material';
 import { useUser } from '@libs';
 import { Navigation } from '../Navigation';
-import { BullDashboardButton } from '../BullDashboardButton';
 
 export function Header() {
   // 1. destructure props
