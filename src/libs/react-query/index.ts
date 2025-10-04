@@ -1,6 +1,12 @@
 import { QueryClient, useQuery as useReactQuery, useMutation as useReactMutation } from '@tanstack/react-query';
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: true,
+    },
+  },
+});
 export const queryKeyMap = new Map();
 
 export const useQuery = <T extends Record<string, any>, R>(

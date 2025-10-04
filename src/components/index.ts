@@ -3,6 +3,7 @@ export * from './BullDashboardButton';
 export * from './DialogButton';
 export * from './DialogTitleGroup';
 export * from './Header';
+export * from './ListViewHeader';
 export * from './Navigation';
 export * from './Pagination';
 export * from './UserDetail';

@@ -7,11 +7,20 @@ export const gymRepository = {
     return httpClient.post<void>('/gyms', { name, address });
   },
 
-  async list({ page, limit }: { page: number; limit: number }) {
+  async list({
+    page,
+    limit,
+    filter,
+  }: {
+    page: number;
+    limit: number;
+    filter: { search?: string; searchValue?: string };
+  }) {
     return httpClient.get<{ items: GymModel[]; total: number }>('/gyms', {
       params: {
         page,
         limit,
+        ...filter,
       },
     });
   },
