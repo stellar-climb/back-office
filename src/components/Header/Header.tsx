@@ -1,11 +1,13 @@
-import { AppBar, Avatar, Box, Stack, Toolbar, Tooltip, Typography } from '@mui/material';
-import { useUser } from '@libs';
+import { AppBar, Avatar, Box, IconButton, Stack, Toolbar, Tooltip, Typography } from '@mui/material';
+import { useSignOut, useUser } from '@libs';
 import { Navigation } from '../Navigation';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export function Header() {
   // 1. destructure props
   // 2. lib hooks
   const [user] = useUser();
+  const signOut = useSignOut();
 
   // 3. state hooks
   // 4. query hooks
@@ -28,11 +30,7 @@ export function Header() {
               <Navigation />
             </Stack>
 
-            {/* <Stack spacing={2} direction="row" css={{ alignItems: 'center' }}>
-              <BullDashboardButton />
-            </Stack> */}
-
-            <Stack spacing={2} direction="row" css={{ alignItems: 'center' }}>
+            <Stack spacing={4} direction="row" css={{ alignItems: 'center' }}>
               <Avatar
                 src="https://via.placeholder.com/150"
                 css={{ width: 32, height: 32, backgroundColor: '#000000', color: '#ffffff' }}
@@ -51,6 +49,9 @@ export function Header() {
                   {user.email}
                 </Typography>
               </Tooltip>
+              <IconButton onClick={signOut}>
+                <LogoutIcon css={{ color: '#000000' }} />
+              </IconButton>
             </Stack>
           </Stack>
         </Toolbar>

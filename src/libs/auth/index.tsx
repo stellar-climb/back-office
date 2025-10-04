@@ -1,15 +1,7 @@
-import {
-  createContext,
-  type ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import { UserModel } from "@models";
-import { httpClient } from "../http-client";
-import { CircularProgress } from "@mui/material";
+import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { UserModel } from '@models';
+import { httpClient } from '../http-client';
+import { CircularProgress } from '@mui/material';
 
 const authClient = httpClient;
 
@@ -28,27 +20,21 @@ async function loadToken(query: () => Promise<{ accessToken: string }>) {
 
   if (accessToken) {
     httpClient.setAuthorization(accessToken);
-    localStorage.setItem("token", accessToken);
+    localStorage.setItem('token', accessToken);
   }
 
   return !!accessToken;
 }
 
 async function unloadToken() {
-  localStorage.removeItem("token");
+  localStorage.removeItem('token');
 }
 
 async function getSelf() {
-  return authClient.get<UserModel>("/users/self");
+  return authClient.get<UserModel>('/users/self');
 }
 
-export function AuthProvider({
-  user: initUser,
-  children,
-}: {
-  user?: UserModel;
-  children: ReactNode;
-}) {
+export function AuthProvider({ user: initUser, children }: { user?: UserModel; children: ReactNode }) {
   // props destructure
   // lib hooks
   // state hooks
@@ -71,7 +57,7 @@ export function AuthProvider({
     if (!initialized) {
       loadToken(() =>
         Promise.resolve({
-          accessToken: localStorage.getItem("token") || "",
+          accessToken: localStorage.getItem('token') || '',
         })
       )
         .then(async (isToken) => {
@@ -88,15 +74,10 @@ export function AuthProvider({
     return <CircularProgress />;
   }
 
-  return (
-    <UserContext.Provider value={userContext}>{children}</UserContext.Provider>
-  );
+  return <UserContext.Provider value={userContext}>{children}</UserContext.Provider>;
 }
 
-export const useSignInGoogle: () => [
-  (idToken: string) => void,
-  { loading: boolean }
-] = () => {
+export const useSignInGoogle: () => [(idToken: string) => void, { loading: boolean }] = () => {
   const context = useContext(UserContext);
   const [loading, setLoading] = useState(false);
 
@@ -104,9 +85,7 @@ export const useSignInGoogle: () => [
     useCallback(
       (idToken: string) => {
         setLoading(true);
-        loadToken(() =>
-          authClient.post("/auth/token", { googleToken: idToken })
-        )
+        loadToken(() => authClient.post('/auth/token', { googleToken: idToken }))
           .then(async () => context.setUser(await getSelf()))
           .catch((err) => console.log(err))
           .finally(() => setLoading(false));

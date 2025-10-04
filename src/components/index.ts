@@ -1,5 +1,4 @@
 export * from './AddGymDialog';
-export * from './BullDashboardButton';
 export * from './DialogButton';
 export * from './DialogTitleGroup';
 export * from './Header';
